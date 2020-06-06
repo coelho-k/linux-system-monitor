@@ -29,7 +29,7 @@ float Process::CpuUtilization() {
     long int up_time = LinuxParser::ProcessUpTime(pid_);
     long hertz = sysconf(_SC_CLK_TCK);
     float total_time = (time_info[0] + time_info[1] + time_info[2] + time_info[3]) / hertz;
-    cpu_util = ((total_time / up_time) / 100 );
+    cpu_util = ((total_time / up_time) );
     return cpu_util;
  }
 

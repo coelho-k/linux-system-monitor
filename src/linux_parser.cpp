@@ -194,8 +194,9 @@ string LinuxParser::Ram(int pid) {
       std::istringstream linestream(line);
       linestream >> key >> value;
       if (key == "VmSize:"){
-        int tmp= (100 * std::stof(value)/1024+0.5); 
-        return to_string(tmp/100)+"."+((tmp%100 <10) ? "0"+to_string(tmp%100):to_string(tmp%100));
+        const long r_kb= std::stol(value);
+        const long r_mb = r_kb / 1024;
+        return to_string(r_mb);
       }
     }
   }
@@ -250,7 +251,7 @@ long int LinuxParser::ProcessUpTime(int pid) {
     for (int i=0; i<14; i++){
       linestream >> u_time;
     }
-    return (std::stol(u_time) / sysconf(_SC_CLK_TCK));
+    return LinuxParser::UpTime() - (std::stol(u_time) / sysconf(_SC_CLK_TCK));
   }
   return 0.0;
 }

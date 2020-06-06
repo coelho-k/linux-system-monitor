@@ -3,11 +3,13 @@
 
 class Processor {
  public:
-  float Utilization();  // TODO: See src/processor.cpp
+  float Utilization();  
 
-  // TODO: Declare any necessary private members
+  
  private:
  // TODO: Store previous values for CPU Utilization
+  std::vector<float> previous_cpu_elements = {};
+    
 
 };
 
